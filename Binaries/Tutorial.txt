@@ -1,0 +1,7 @@
+Be sure to make a save state before running the EXE, because once you open the mod,
+you can't turn off freecam without rebooting the emulator. To use the mod, open FreecamCTR,
+then simply use WASD to move, R and F to rise and fall, then arrow keys to rotate
+
+This is an early prototype, that was built in one hour, lots of room for improvement
+The polygons drawn depends on where the kart is, not depending on where the camera is,
+I know it's possible to change, not sure how yet
