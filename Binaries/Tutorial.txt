@@ -1,5 +1,16 @@
-Be sure to make a save state before running the EXE, because once you open the mod,
-you can't turn off freecam without rebooting the emulator.
+This only works with SCUS 94426 version of Crash Team Racing
+
+Windows
+Open FreecamCTR.exe, follow the directions, and it is ready for use when the 
+cmd window has a blank screen. If you close the FreecamCTR window, and 
+restart the race, it "might" go back to normal, and if it does not, then simply
+restart the emulator
+
+PSP
+Install FreecamCTR.prx the way you'd install any other PRX to the seplugins folder,
+open Crash Team Racing, wait until you get to main menu, then press Select to
+activate Freecam. After that, enter a race and fly around. Freecam will be disabled
+when you press the Home button
 
 Use the D-Pad to move
 Use shape buttons to rotate camera (cross, circle, triangle, square)
