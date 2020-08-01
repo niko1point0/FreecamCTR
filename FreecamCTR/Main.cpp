@@ -1,17 +1,5 @@
-// Winsock tutorial
-// https://docs.microsoft.com/en-us/windows/win32/winsock/finished-server-and-client-code
-
-#define WIN32_LEAN_AND_MEAN
 
 #include <windows.h>
-#include <winsock2.h>
-#include <ws2tcpip.h>
-#include <tlhelp32.h>
-
-#pragma comment (lib, "Ws2_32.lib")
-#pragma comment (lib, "Mswsock.lib")
-#pragma comment (lib, "AdvApi32.lib")
-
 #include <time.h>
 #include <stdio.h>
 
@@ -20,7 +8,6 @@
 // Can be negative
 long long int baseAddress;
 HANDLE handle;
-
 
 void WriteMem(unsigned int psxAddr, void* pcAddr, int size)
 {
@@ -107,7 +94,7 @@ void MoveCamera()
 	// grab the position and rotation
 	ReadMem(0x80096B20 + 0x168 + 0x110 * playerIndex, variables, sizeof(variables));
 	
-	int speed = 0x10;
+	int speed = 0x18;
 	
 	if (GetAsyncKeyState(VK_UP))	variables[3] += speed;
 	if (GetAsyncKeyState(VK_DOWN))	variables[3] -= speed;
@@ -144,9 +131,21 @@ void MoveCamera()
 	
 	// inject the new position and rotation
 	WriteMem(0x80096B20 + 0x168 + 0x110 * playerIndex, variables, sizeof(variables));
-}
 
-#include <thread>
+	int AddrP1;
+	ReadMem(0x8009900C, &AddrP1, sizeof(AddrP1));
+
+	int pos[3];
+	pos[0] = (int)variables[0] << 8;
+	pos[1] = (int)variables[1] << 8;
+	pos[2] = (int)variables[2] << 8;
+
+	int zero = 0;
+	WriteMem(AddrP1 + 0x2d4, pos, sizeof(pos));
+
+	// Disable the teleportation of the player to 2d4, 2d8, 2dc
+	WriteMem(AddrP1 + 0x7c, &zero, sizeof(zero));
+}
 
 int main(int argc, char** argv)
 {
